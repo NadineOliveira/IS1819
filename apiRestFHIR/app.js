@@ -3,11 +3,33 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var uuid = require('uuid/v4')
+var session = require('express-session')
+var FileStore = require('session-file-store')(session)
+var passport = require('passport')
+
+require('./authentication/aut')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+// Sessions
+
+app.use(session({
+  genid: () =>{
+    return uuid()
+  },
+  store: new FileStore(),
+  secret: 'is_grupo7_2019',
+  resave: false,
+  saveUninitialized: true
+}))
+
+// Inicialização do passport
+app.use(passport.initialize())
+app.use(passport.session())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
