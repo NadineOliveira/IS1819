@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "models": "sequelize-auto -o ./models -d is_grupo7 -h localhost -u root -p 3306 -x pass -e mysql"
+    "models": "sequelize-auto -o ./models -d is_grupo7 -h localhost -u root -p 3306 -x goleador -e mysql"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",

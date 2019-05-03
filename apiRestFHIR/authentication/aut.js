@@ -2,11 +2,7 @@ var passport = require('passport')
 var localStrategy = require('passport-local').Strategy
 var JWTstrategy = require('passport-jwt').Strategy
 var ExtractJWT = require('passport-jwt').ExtractJwt
-var db = require('../databaseConfiguration/config')
-
-
-
-var Utilizador = db.import('../models/utilizador')
+var Utilizador = require('../controllers/Utilizador')
 
 // Login de Utilizador
 passport.use('login',new localStrategy({
@@ -14,18 +10,16 @@ passport.use('login',new localStrategy({
     passwordField: 'password'
 },async (u,p,done) =>{
     try{
-        var pre = await Utilizador.findOne({
-            where:{
-                username: u
-            },
-        })
-        var utilizador = pre.dataValues 
-        if(!utilizador){
-            return done(null,false,{message: 'Utilizador não encontrado!'})
+        var valida = await Utilizador.isValidPassword(u,p) 
+        if(valida == -2) return done(null,false,{message: 'Utilizador não encontrado!'})
+        else{
+            if(valida == -1){
+                return done(null,false,{message: 'Utilizador não encontrado!'})
+            }
+            else{
+                return done(null,utilizador,{message: 'Utilizador autenticado!'})
+            }
         }
-        var valida = await Utilizador.isValidPassword(p,utilizador.password)
-        if(!valida) return done(null,false,{message: 'Password inválida!'})
-        return done(null,utilizador,{message: 'Utilizador autenticado!'})
     }
     catch(erro){
         done(erro)

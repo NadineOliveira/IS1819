@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Utilizador', {
+  var Utilizador = sequelize.define('Utilizador', {
     idUtilizador: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -49,7 +49,11 @@ module.exports = function(sequelize, DataTypes) {
         key: 'idHospital'
       }
     }
-  }, {
-    tableName: 'Utilizador'
+  },{
+    tableName: 'Utilizador',
   });
+
+
+
+
 };
