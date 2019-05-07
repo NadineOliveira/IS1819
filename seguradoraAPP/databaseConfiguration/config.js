@@ -1,21 +1,21 @@
-var Sequelize = require('sequelize')
+var Sequelize = require("sequelize");
 
-var sequelize = new Sequelize('seguradora', 'root', 'goleador', {
-    host: 'localhost',
-    dialect: 'mysql',
-    logging: false,
-    define: {
-      timestamps: false
-    }
-})
-  
-  
-sequelize.authenticate()
-    .then(() => {
-      console.log('Connection has been established successfully.');
-    })
-    .catch(err => {
-      console.error('Unable to connect to the database:', err);
-})
+var sequelize = new Sequelize("seguradora", "root", "pass", {
+  host: "localhost",
+  dialect: "mysql",
+  logging: false,
+  define: {
+    timestamps: false
+  }
+});
 
-module.exports = sequelize
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Connection has been established successfully.");
+  })
+  .catch(err => {
+    console.error("Unable to connect to the database:", err);
+  });
+
+module.exports = sequelize;
