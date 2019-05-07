@@ -18,6 +18,10 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING(45),
         allowNull: false
       },
+      data: {
+        type: DataTypes.DATEONLY,
+        allowNull: false
+      },
       Medico_idMedico: {
         type: DataTypes.INTEGER(11),
         allowNull: false,
