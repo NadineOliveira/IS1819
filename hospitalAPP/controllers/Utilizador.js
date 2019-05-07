@@ -7,7 +7,7 @@ module.exports.addUtilizador = async function(newUtilizador) {
   var idHospital = await hospitalController.getHospitalID(
     newUtilizador.Hospital_idHospital
   );
-
+  console.log(idHospital.idHospital);
   var result;
 
   await Utilizador.create({
@@ -19,13 +19,6 @@ module.exports.addUtilizador = async function(newUtilizador) {
     telemovel: newUtilizador.telemovel,
     Hospital_idHospital: idHospital
   })
-    .then(() =>
-      Utilizador.findOrCreate({
-        where: {
-          id: id
-        }
-      })
-    )
     .then(([ax, created]) => {
       result = ax;
     })
@@ -52,17 +45,17 @@ module.exports.getUtilizadorID = async username => {
 };
 
 module.exports.isValidPassword = async (u, p) => {
-  var utilizador = await this.getUtilizadorID(username);
+  var utilizador = await this.getUtilizadorID(u);
 
   if (!utilizador) {
     return -2;
   }
 
-  var compare = await bcrypt.compare(utilizador.password, p);
+  var compare = await bcrypt.compare(p, utilizador.password);
 
   if (!compare) {
     return -1;
   }
 
-  return 1;
+  return utilizador;
 };
