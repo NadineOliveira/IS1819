@@ -28,11 +28,11 @@ module.exports.addUtilizador = async function(newUtilizador) {
   return result;
 };
 
-module.exports.getUtilizadorID = async username => {
+module.exports.getUtilizadorID = async email => {
   var result;
   await Utilizador.findOne({
     where: {
-      username: username
+      email: email
     }
   })
     .then(values => {
@@ -44,8 +44,8 @@ module.exports.getUtilizadorID = async username => {
   return result;
 };
 
-module.exports.isValidPassword = async (u, p) => {
-  var utilizador = await this.getUtilizadorID(u);
+module.exports.isValidPassword = async (email, p) => {
+  var utilizador = await this.getUtilizadorID(email);
 
   if (!utilizador) {
     return -2;

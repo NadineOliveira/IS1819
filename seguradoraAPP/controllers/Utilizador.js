@@ -1,19 +1,34 @@
-var Utilizador = require('./associations').Utilizador
-var bcrypt = require('bcrypt')
+var Utilizador = require("./associations").Utilizador;
+var bcrypt = require("bcrypt");
 
-
-module.exports.isValidPassword = async (u,p) => {
-    var utilizador = await this.getUtilizadorID(username)
-    
-    if(!utilizador){
-        return -2
+module.exports.getUtilizadorID = async email => {
+  var result;
+  await Utilizador.findOne({
+    where: {
+      email: email
     }
+  })
+    .then(values => {
+      result = values.dataValues;
+    })
+    .catch(err => {
+      result = err;
+    });
+  return result;
+};
 
-    var compare = await bcrypt.compare(utilizador.password,p)
+module.exports.isValidPassword = async (email, p) => {
+  var utilizador = await this.getUtilizadorID(email);
 
-    if(!compare){
-        return -1
-    }
+  if (!utilizador) {
+    return -2;
+  }
 
-    return 1
-}
+  var compare = await bcrypt.compare(p, utilizador.password);
+
+  if (!compare) {
+    return -1;
+  }
+
+  return utilizador;
+};

@@ -2,11 +2,11 @@ var db = require("../databaseConfiguration/config");
 const Utilizador = db.import("../models/utilizador");
 const Sinistrado = db.import("../models/sinistrado");
 const Seguro = db.import("../models/seguro");
-const Seguro_Sinistrado = db.import("../models/seguro_Sinistrado");
+const Seguro_Sinistrado = db.import("../models/seguro_sinistrado");
 const Seguradora = db.import("../models/seguradora");
-const Relatorio_Medico = db.import("../models/relatorio_Medico");
+const Relatorio_Medico = db.import("../models/relatorio_medico");
 const Participacao = db.import("../models/participacao");
-const Despesa_Tratamento = db.import("../models/despesa_Tratamento");
+const Despesa_Tratamento = db.import("../models/despesa_tratamento");
 
 /*
     Utilizador 1-1 Seguradora
