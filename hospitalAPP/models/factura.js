@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
         type: "DOUBLE",
         allowNull: false
       },
-      Diagnóstico_idDiagnóstico: {
+      Diagnóstico_Factura: {
         type: DataTypes.INTEGER(11),
         allowNull: false,
         references: {

@@ -1,4 +1,6 @@
 var Utente = require("./associations").Utente;
+var Tratamento = require("./associations").Tratamento;
+var Diagnostico = require("./associations").Diagnostico;
 
 module.exports.getAllUtentes = async function() {
   var result = [];
@@ -38,6 +40,32 @@ module.exports.addUtente = async function(newUtente) {
   })
     .then(user => {
       result = user;
+    })
+    .catch(err => {
+      result = err;
+    });
+  return result;
+};
+
+module.exports.getTratamentosByUtente = async function(id) {
+  var result = [];
+  await Utente.findAll({
+    where: { nif: id },
+    include: [
+      {
+        model: Diagnostico,
+        required: true,
+        include: [
+          {
+            model: Tratamento,
+            required: true
+          }
+        ]
+      }
+    ]
+  })
+    .then(values => {
+      for (i in values) result.push(values[i].dataValues);
     })
     .catch(err => {
       result = err;

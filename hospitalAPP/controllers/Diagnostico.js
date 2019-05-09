@@ -17,11 +17,13 @@ module.exports.getDiagnosticoByData = async function(nif, data) {
   return result;
 };
 
+var Utente = require("./associations").Utente;
+
 module.exports.getAllDiagnosticosByUtente = async function(id) {
   var result = [];
   await Diagnostico.findAll({
     where: {
-      Utente_nif: nif
+      Utente_nif: id
     }
   })
     .then(values => {
