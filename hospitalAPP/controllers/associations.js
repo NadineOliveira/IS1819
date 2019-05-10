@@ -6,6 +6,7 @@ const Medico = db.import("../models/medico");
 const Hospital = db.import("../models/hospital");
 const Factura = db.import("../models/factura");
 const Diagnostico = db.import("../models/diagnóstico");
+const Pedido = db.import("../models/pedido");
 
 /*
     Utilizador 1-1 Hospital
@@ -51,6 +52,14 @@ Tratamento.belongsTo(Factura, { foreignKey: "factura_idFactura" });
 Utente.hasMany(Diagnostico, { foreignKey: "Utente_nif" });
 Diagnostico.belongsTo(Utente, { foreignKey: "Utente_nif" });
 
+/*
+    Hospital 1-N Pedido
+    Pedido 1-1 Hospital
+*/
+
+Hospital.hasMany(Pedido, { foreignKey: "hospital_pedido" });
+Pedido.belongsTo(Hospital, { foreignKey: "hospital_pedido" });
+
 exports.Diagnostico = Diagnostico;
 exports.Factura = Factura;
 exports.Hospital = Hospital;
@@ -58,3 +67,4 @@ exports.Medico = Medico;
 exports.Tratamento = Tratamento;
 exports.Utilizador = Utilizador;
 exports.Utente = Utente;
+exports.Pedido = Pedido;
