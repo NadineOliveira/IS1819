@@ -37,7 +37,7 @@ module.exports.addMedico = async function(newMedico) {
     nome: newMedico.nome,
     telemovel: newMedico.telemovel,
     area_especializacao: newMedico.area_especializacao,
-    Hospital_idHospital: idHospital
+    Hospital_idHospital: idHospital.idHospital
   })
     .then(user => {
       result = user;

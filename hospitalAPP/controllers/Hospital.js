@@ -15,3 +15,26 @@ module.exports.getHospitalID = async nome => {
     });
   return result;
 };
+
+module.exports.addHospital = async function(newHospital) {
+  var result;
+
+  await Hospital.create({
+    nome: newHospital.nome,
+    telemovel: newHospital.telemovel
+  })
+    .then(() =>
+      Hospital.findOrCreate({
+        where: {
+          nome: newHospital.nome
+        }
+      })
+    )
+    .then(user => {
+      result = user;
+    })
+    .catch(err => {
+      result = err;
+    });
+  return result;
+};
