@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    .card.text-center
+        .card-header
+            h1 Hospital
+            p=nome
+        nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
+            a.navbar-brand(href='#') Navbar
+            button.navbar-toggler(type='button' data-toggle='collapse' data-target='#collapsibleNavbar')
+                span.navbar-toggler-icon
+            #collapsibleNavbar.collapse.navbar-collapse
+                ul.navbar-nav
+                    li.nav-item
+                        a.nav-link(href='#') Link
+                    li.nav-item
+                        a.nav-link(href='#') Link
+                    li.nav-item
+                        a.nav-link(href='#') Link
+        .card-body
+            .container(style='margin-top:30px')
+                .row
+                    .col-sm-4
+        .card-footer.text-center
+            p HospitalApp by is_grupo7

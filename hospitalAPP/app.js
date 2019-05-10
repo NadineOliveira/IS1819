@@ -13,7 +13,6 @@ require("./authentication/aut");
 
 var indexRouter = require("./routes/index");
 var apiUtilizadoresRouter = require("./routes/api/utilizadores");
-var usersRouter = require("./routes/users");
 var apiHospitaisRouter = require("./routes/api/hospitais");
 var apiDiagnosticosRouter = require("./routes/api/diagnosticos");
 var apiMedicosRouter = require("./routes/api/medicos");
@@ -51,7 +50,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/api/utilizadores", apiUtilizadoresRouter);
-app.use("/users", usersRouter);
 app.use("/api/hospitais", apiHospitaisRouter);
 app.use("/api/diagnosticos", apiDiagnosticosRouter);
 app.use("/api/medicos", apiMedicosRouter);
