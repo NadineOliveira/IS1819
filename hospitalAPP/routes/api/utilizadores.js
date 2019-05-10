@@ -4,11 +4,25 @@ var passport = require('passport')
 var Utilizador = require("../../controllers/Utilizador");
 
 
-router.get('/:utilizador',(req,res)=>{
-    Utilizador.getUtilizadorID(req.params.utilizador)
+router.get('/',(req,res)=>{
+    Utilizador.getUtilizadores()
+              .then(dados => {res.json(dados)})
+              .catch(erro => res.status(500).send('Erro na obtenção de utilizadores '+ erro))
+})
+
+router.post('/',(req,res)=>{
+    Utilizador.addUtilizador(req.body)
+              .then(dados => {res.json(dados)})
+              .catch(erro => res.status(500).send('Erro na inserção do Utilizador: ' + erro ))
+})
+
+
+router.get('/:id',(req,res)=>{
+    Utilizador.getUtilizadorID(req.params.id)
               .then(dados => res.json(dados))
               .catch(erro => res.status(500).send('Erro na obtenção do utilizador: ' + erro))    
 })
+
 
 
 module.exports = router;

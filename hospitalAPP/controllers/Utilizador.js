@@ -7,7 +7,6 @@ module.exports.addUtilizador = async function(newUtilizador) {
   var idHospital = await hospitalController.getHospitalID(
     newUtilizador.Hospital_idHospital
   );
-  console.log(idHospital.idHospital);
   var result;
 
   await Utilizador.create({
