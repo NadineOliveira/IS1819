@@ -25,6 +25,14 @@ module.exports = function(sequelize, DataTypes) {
           model: "diagnóstico",
           key: "idDiagnóstico"
         }
+      },
+      factura_idFactura: {
+        type: DataTypes.INTEGER(11),
+        allowNull: false,
+        references: {
+          model: "factura",
+          key: "idFactura"
+        }
       }
     },
     {

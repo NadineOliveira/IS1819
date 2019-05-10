@@ -17,14 +17,6 @@ module.exports = function(sequelize, DataTypes) {
       preco: {
         type: "DOUBLE",
         allowNull: false
-      },
-      Diagnóstico_Factura: {
-        type: DataTypes.INTEGER(11),
-        allowNull: false,
-        references: {
-          model: "diagnóstico",
-          key: "idDiagnóstico"
-        }
       }
     },
     {

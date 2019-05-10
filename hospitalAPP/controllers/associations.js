@@ -41,8 +41,8 @@ Tratamento.belongsTo(Diagnostico, { foreignKey: "Diagnóstico_idDiagnóstico" })
 /*
     Diagnostico 1-1 Factura
 */
-Diagnostico.hasMany(Factura, { foreignKey: "Diagnóstico_Factura" });
-Factura.belongsTo(Diagnostico, { foreignKey: "Diagnóstico_Factura" });
+Factura.hasMany(Tratamento, { foreignKey: "factura_idFactura" });
+Tratamento.belongsTo(Factura, { foreignKey: "factura_idFactura" });
 
 /*
     Utente 1-N Diagnostico
