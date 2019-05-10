@@ -48,3 +48,20 @@ module.exports.getParticipacoesOfSeguro = async function(idSeguro) {
     });
   return result;
 };
+
+module.exports.addSeguro = async function(newSeguro) {
+  var result;
+
+  await Seguro.create({
+    tipo_seguro: newSeguro.tipo_seguro,
+    descricao: newSeguro.descricao,
+    Seguradora_id: newSeguradora.Seguradora_id
+  })
+    .then(([ax, created]) => {
+      result = ax;
+    })
+    .catch(err => {
+      result = err;
+    });
+  return result;
+};

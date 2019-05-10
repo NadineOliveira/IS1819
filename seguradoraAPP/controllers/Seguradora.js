@@ -28,7 +28,6 @@ module.exports.getSeguradoraByNome = async nome => {
   return result;
 };
 
-
 module.exports.getSeguradoraID = async is => {
   var result;
   await Seguradora.findOne({
@@ -38,6 +37,29 @@ module.exports.getSeguradoraID = async is => {
   })
     .then(values => {
       result = values.dataValues;
+    })
+    .catch(err => {
+      result = err;
+    });
+  return result;
+};
+
+module.exports.addSeguradora = async function(newSeguradora) {
+  var result;
+
+  await Seguradora.create({
+    nome: newSeguradora.nome,
+    telemovel: newSeguradora.telemovel
+  })
+    .then(() =>
+      Seguradora.findOrCreate({
+        where: {
+          nome: newSeguradora.nome
+        }
+      })
+    )
+    .then(([ax, created]) => {
+      result = ax;
     })
     .catch(err => {
       result = err;
