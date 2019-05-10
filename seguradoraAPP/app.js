@@ -14,6 +14,10 @@ var associations = require("./controllers/associations");
 var indexRouter = require("./routes/index");
 var apiUtilizadoresRouter = require('./routes/api/utilizadores')
 var usersRouter = require("./routes/users");
+var apiParticipacoesRouter = require('./routes/api/participacoes')
+var apiSeguradorasRouter = require('./routes/api/seguradoras')
+var apiSegurosRouter = require('./routes/api/seguros')
+var apiSinistradosRouter = require('./routes/api/sinistrados')
 
 
 var app = express();
@@ -47,6 +51,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/api/utilizadores", apiUtilizadoresRouter);
 app.use("/utilizadores", usersRouter);
+app.use("/api/participacoes", apiParticipacoesRouter);
+app.use("/api/seguradoras", apiSeguradorasRouter);
+app.use("/api/seguros", apiSegurosRouter);
+app.use("/api/sinistrados", apiSinistradosRouter);
 
 
 // catch 404 and forward to error handler

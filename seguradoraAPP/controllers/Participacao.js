@@ -2,7 +2,7 @@ var Participacao = require("./associations").Participacao;
 var Despesa_Tratamento = require("./associations").Despesa_Tratamento;
 var Relatorio_Medico = require("./associations").Relatorio_Medico;
 
-module.exports.getAllParticipacos = async function() {
+module.exports.getAllParticipacoes = async function() {
   var result = [];
   await Participacao.findAll()
     .then(values => {

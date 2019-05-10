@@ -12,11 +12,28 @@ module.exports.getAllSeguradoras = async function() {
   return result;
 };
 
-module.exports.getSeguradoraID = async nome => {
+module.exports.getSeguradoraByNome = async nome => {
   var result;
   await Seguradora.findOne({
     where: {
       nome: nome
+    }
+  })
+    .then(values => {
+      result = values.dataValues;
+    })
+    .catch(err => {
+      result = err;
+    });
+  return result;
+};
+
+
+module.exports.getSeguradoraID = async is => {
+  var result;
+  await Seguradora.findOne({
+    where: {
+      idSeguradora: id
     }
   })
     .then(values => {
