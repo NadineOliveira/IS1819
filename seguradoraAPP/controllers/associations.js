@@ -22,8 +22,8 @@ Seguradora.hasMany(Utilizador, { foreignKey: "Seguradora_idSeguradora" });
     Seguro 1-1 Seguradora
 */
 
-Seguradora.hasMany(Seguro, { foreignKey: "Seguradora_idSeguradora" });
-Seguro.belongsTo(Seguradora, { foreignKey: "Seguradora_idSeguradora" });
+Seguradora.hasMany(Seguro, { foreignKey: "Seguradora_id" });
+Seguro.belongsTo(Seguradora, { foreignKey: "Seguradora_id" });
 
 /*
     Seguro 1-N Participacao
@@ -47,15 +47,15 @@ Seguro.hasMany(Seguro_Sinistrado, { foreignKey: "Seguro_idSeguro" });
 Seguro_Sinistrado.belongsTo(Seguro, { foreignKey: "Seguro_idSeguro" });
 
 Seguro_Sinistrado.belongsTo(Sinistrado, {
-  foreignKey: "Sinistrado_idSinistrado"
+  foreignKey: "Sinistrado_nif"
 });
 Sinistrado.hasMany(Seguro_Sinistrado, {
-  foreignKey: "Sinistrado_idSinistrado"
+  foreignKey: "Sinistrado_nif"
 });
 
 Seguro.belongsToMany(Sinistrado, {
   through: "Seguro_Sinistrado",
-  foreignKey: "Sinistrado_idSinistrado"
+  foreignKey: "Sinistrado_nif"
 });
 Sinistrado.belongsToMany(Seguro, {
   through: "Seguro_Sinistrado",

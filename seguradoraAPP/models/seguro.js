@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.TEXT,
         allowNull: false
       },
-      Seguradora_idSeguradora: {
+      Seguradora_id: {
         type: DataTypes.INTEGER(11),
         allowNull: false,
         primaryKey: true,
