@@ -12,13 +12,12 @@ var associations = require("./controllers/associations");
 require("./authentication/aut");
 
 var indexRouter = require("./routes/index");
-var apiUtilizadoresRouter = require('./routes/api/utilizadores')
+var apiUtilizadoresRouter = require("./routes/api/utilizadores");
 var usersRouter = require("./routes/users");
-var apiHospitaisRouter = require('./routes/api/hospitais')
-var apiDiagnosticosRouter = require('./routes/api/diagnosticos')
-var apiMedicosRouter = require('./routes/api/medicos')
-var apiUtentesRouter = require('./routes/api/utentes')
-
+var apiHospitaisRouter = require("./routes/api/hospitais");
+var apiDiagnosticosRouter = require("./routes/api/diagnosticos");
+var apiMedicosRouter = require("./routes/api/medicos");
+var apiUtentesRouter = require("./routes/api/utentes");
 
 var app = express();
 

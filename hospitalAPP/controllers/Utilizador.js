@@ -10,14 +10,21 @@ module.exports.addUtilizador = async function(newUtilizador) {
   var result;
 
   await Utilizador.create({
+    email: newUtilizador.email,
     nome: newUtilizador.nome,
     password: hash,
-    email: newUtilizador.email,
     username: newUtilizador.username,
     tipo_entidade: newUtilizador.tipo_entidade,
     telemovel: newUtilizador.telemovel,
-    Hospital_idHospital: idHospital
+    Hospital_idHospital: idHospital.idHospital
   })
+    .then(() =>
+      Utilizador.findOrCreate({
+        where: {
+          email: newUtilizador.email
+        }
+      })
+    )
     .then(([ax, created]) => {
       result = ax;
     })
