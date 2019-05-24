@@ -4,22 +4,47 @@ block content
     .card.text-center
         .card-header
             h1 Hospital
-            p=nome
         nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
-            a.navbar-brand(href='#') Navbar
+            a.navbar-brand(href='/pedidos') Home 
             button.navbar-toggler(type='button' data-toggle='collapse' data-target='#collapsibleNavbar')
                 span.navbar-toggler-icon
             #collapsibleNavbar.collapse.navbar-collapse
                 ul.navbar-nav
                     li.nav-item
-                        a.nav-link(href='#') Link
+                        a.nav-link(href='/utentes') Utentes
                     li.nav-item
-                        a.nav-link(href='#') Link
+                        a.nav-link(href='/medicos') Médicos
                     li.nav-item
-                        a.nav-link(href='#') Link
+                        a.nav-link(href='/utilizadores') Utilizadores 
         .card-body
-            .container(style='margin-top:30px')
+            .container(style='text-align:center ; margin-top:60px' class="container-fluid")
                 .row
-                    .col-sm-4
+                    .col
+                        h1 Pedidos:
+                    .col-6
+                        table.table
+                            thead.thead-dark
+                                tr
+                                th ID:
+                                th Nif:
+                                th Seguradora:
+                                th Estado:
+                                th Hospital
+                                th Opções:
+                            each p in pedidos
+                                tbody
+                                    tr
+                                        td=p.idPedido
+                                        td=p.nif
+                                        td=p.nome_seguradora
+                                        if p.estado
+                                            td Concluido
+                                        else
+                                            td Em Processo
+                                        td=p.hospital_pedido
+                                        - var link = "/pedidos/resposta?id=" + id
+                                        td
+                                          a.btn.btn-dark.rounded(href=link) Responder
+                    .col
         .card-footer.text-center
             p HospitalApp by is_grupo7

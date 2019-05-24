@@ -2,7 +2,7 @@ var express = require("express");
 var passport = require("passport");
 var jwt = require("jsonwebtoken");
 var router = express.Router();
-var axios = require('axios')
+
 
 var tController = require("../controllers/Utilizador");
 
@@ -24,7 +24,7 @@ router.post("/", async (req, res, next) => {
         req.user.token = token;
         req.session.token = token;
 
-        return res.redirect("/home?idHospital=" +  utilizador.Hospital_idHospital);
+        return res.redirect("/pedidos");
       });
     } catch (error) {
       return next(error);
@@ -32,15 +32,4 @@ router.post("/", async (req, res, next) => {
   })(req, res, next);
 });
 
-
-router.get('/home',(req,res) =>{
-  axios.get('http://localhost:8004/api/hospitais/' + req.query.idHospital)
-        .then(dados => {
-          res.render('home',{nome: dados.data.nome})
-      })
-      .catch(erro => {
-          console.log('Erro na listagem do Utilizador: ' + erro)
-          res.render('error', {error: erro, message: "Erro na listagem de Utilizadores"})
-      })
-  })
 module.exports = router;

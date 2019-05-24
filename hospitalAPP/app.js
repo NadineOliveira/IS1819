@@ -17,6 +17,8 @@ var apiHospitaisRouter = require("./routes/api/hospitais");
 var apiDiagnosticosRouter = require("./routes/api/diagnosticos");
 var apiMedicosRouter = require("./routes/api/medicos");
 var apiUtentesRouter = require("./routes/api/utentes");
+var apiPedidosRouter = require("./routes/api/pedidos");
+var pedidosRouter = require('./routes/pedidos')
 
 var app = express();
 
@@ -54,6 +56,9 @@ app.use("/api/hospitais", apiHospitaisRouter);
 app.use("/api/diagnosticos", apiDiagnosticosRouter);
 app.use("/api/medicos", apiMedicosRouter);
 app.use("/api/utentes", apiUtentesRouter);
+app.use("/api/pedidos", apiPedidosRouter)
+app.use("/pedidos",pedidosRouter)
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
