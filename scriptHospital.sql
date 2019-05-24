@@ -73,8 +73,10 @@ INSERT INTO `hospital`.`pedido`
 (`idPedido`,
 `nif`,
 `nome_seguradora`,
+`estado`,
 `hospital_pedido`)
 VALUES
-(1,'155155155','SeguroadoraA',1);
+(1,'155155155','SeguradoraA','aberto',1);
+
 
 
