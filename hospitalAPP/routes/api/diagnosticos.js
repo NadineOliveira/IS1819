@@ -21,4 +21,15 @@ router.get("/data/:nif", (req, res) => {
     );
 });
 
+
+router.get("/tratamentos/:id", (req, res) => {
+  Diagnostico.getTratamentosByDiagnostico(req.params.id)
+    .then(dados => {
+      res.json(dados);
+    })
+    .catch(erro =>
+      res.status(500).send("Erro na obtenção dos Tratamentos " + erro)
+    );
+});
+
 module.exports = router;

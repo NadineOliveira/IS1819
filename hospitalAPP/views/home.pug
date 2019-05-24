@@ -29,7 +29,7 @@ block content
                                 th Nif:
                                 th Seguradora:
                                 th Estado:
-                                th Hospital
+                                th Hospital:
                                 th Opções:
                             each p in pedidos
                                 tbody
@@ -42,7 +42,7 @@ block content
                                         else
                                             td Em Processo
                                         td=p.hospital_pedido
-                                        - var link = "/pedidos/resposta?id=" + id
+                                        - var link = "/pedidos/resposta?id=" + p.idPedido
                                         td
                                           a.btn.btn-dark.rounded(href=link) Responder
                     .col

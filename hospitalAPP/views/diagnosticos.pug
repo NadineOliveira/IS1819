@@ -1,0 +1,41 @@
+extends layout
+
+block content
+    .card.text-center
+        .card-header
+            h1 Hospital
+        nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
+            a.navbar-brand(href='/pedidos') Home 
+            button.navbar-toggler(type='button' data-toggle='collapse' data-target='#collapsibleNavbar')
+                span.navbar-toggler-icon
+            #collapsibleNavbar.collapse.navbar-collapse
+                ul.navbar-nav
+                    li.nav-item
+                        a.nav-link(href='/utentes') Utentes
+                    li.nav-item
+                        a.nav-link(href='/medicos') Médicos
+                    li.nav-item
+                        a.nav-link(href='/utilizadores') Utilizadores 
+        .card-body
+            .container(style='text-align:center ; margin-top:60px' class="container-fluid")
+                .row
+                    .col
+                        h1 Diagnosticos:
+                    .col-6
+                        table.table
+                            thead.thead-dark
+                                tr
+                                th ID:
+                                th Descrição:
+                                th Área cliníca:
+                                th Opções:
+                            each d in dados
+                                td=d.idDiagnóstico
+                                td=d.descricao
+                                td=d.area_clinica
+                                    - var link = "/diagnosticos/tratamentos?id=" + d.idDiagnóstico
+                                td
+                                    a.btn.btn-dark(href=link) Ver Tratamentos
+                    .col
+        .card-footer.text-center
+            p HospitalApp by is_grupo7

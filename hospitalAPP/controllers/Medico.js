@@ -1,10 +1,20 @@
 var Medico = require("./associations").Medico;
+var Hospital = require("./Hospital")
 
 module.exports.getAllMedicos = async function() {
   var result = [];
   await Medico.findAll()
-    .then(values => {
-      for (i in values) result.push(values[i].dataValues);
+    .then(async values => {
+      for (i in values){
+        await Hospital.getHospitalByID(values[i].dataValues.Hospital_idHospital)
+                       .then(values2 => {
+                          values[i].dataValues.nomeHospital = values2.nome
+                          result.push(values[i].dataValues)
+                        })
+                        .catch(err2 =>{
+                          result = err2
+                        }) 
+      };
     })
     .catch(err => {
       result = err;

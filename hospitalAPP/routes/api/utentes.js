@@ -27,7 +27,7 @@ router.get("/:id", (req, res) => {
     .catch(erro => res.status(500).send("Erro na obtenção do utente: " + erro));
 });
 
-router.get("/tratamentos/:id", (req, res) => {
+router.get("/diagnosticos/:id", (req, res) => {
   Utente.getTratamentosByUtente(req.params.id)
     .then(dados => res.json(dados))
     .catch(erro =>

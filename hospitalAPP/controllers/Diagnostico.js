@@ -1,4 +1,6 @@
 var Diagnostico = require("./associations").Diagnostico;
+var Tratamento = require("./associations").Tratamento
+
 
 module.exports.getDiagnosticoByData = async function(nif, data) {
   var result;
@@ -59,5 +61,23 @@ module.exports.addDiagnostico = async function(newDiagnostico) {
     .catch(err => {
       result = err;
     });
+  return result;
+};
+
+module.exports.getTratamentosByDiagnostico = async function(id) {
+  var result = [];
+  await Diagnostico.findAll({
+          where: { idDiagnóstico: id },
+          include: [{
+              model: Tratamento,
+              required: true
+          }]
+      })
+      .then(values => {
+          for (i in values) result.push(values[i].dataValues);
+      })
+      .catch(err => {
+          result = err;
+      });
   return result;
 };

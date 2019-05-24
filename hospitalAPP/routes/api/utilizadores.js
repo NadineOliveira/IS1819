@@ -5,7 +5,7 @@ var Utilizador = require("../../controllers/Utilizador");
 
 
 router.get('/',(req,res)=>{
-    Utilizador.getUtilizadores()
+    Utilizador.getAllUtilizadores()
               .then(dados => {res.json(dados)})
               .catch(erro => res.status(500).send('Erro na obtenção de utilizadores '+ erro))
 })

@@ -13,10 +13,14 @@ require("./authentication/aut");
 
 var indexRouter = require("./routes/index");
 var apiUtilizadoresRouter = require("./routes/api/utilizadores");
+var utilizadoresRouter = require("./routes/utilizadores")
 var apiHospitaisRouter = require("./routes/api/hospitais");
 var apiDiagnosticosRouter = require("./routes/api/diagnosticos");
+var diagnosticosRouter = require("./routes/diagnosticos");
 var apiMedicosRouter = require("./routes/api/medicos");
+var medicosRouter = require('./routes/medicos')
 var apiUtentesRouter = require("./routes/api/utentes");
+var utentesRouter = require('./routes/utentes')
 var apiPedidosRouter = require("./routes/api/pedidos");
 var pedidosRouter = require('./routes/pedidos')
 
@@ -52,10 +56,14 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/api/utilizadores", apiUtilizadoresRouter);
+app.use("/utilizadores", utilizadoresRouter);
 app.use("/api/hospitais", apiHospitaisRouter);
 app.use("/api/diagnosticos", apiDiagnosticosRouter);
+app.use("/diagnosticos",diagnosticosRouter)
 app.use("/api/medicos", apiMedicosRouter);
+app.use("/medicos",medicosRouter)
 app.use("/api/utentes", apiUtentesRouter);
+app.use("/utentes",utentesRouter)
 app.use("/api/pedidos", apiPedidosRouter)
 app.use("/pedidos",pedidosRouter)
 
