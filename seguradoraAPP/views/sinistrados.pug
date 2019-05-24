@@ -20,29 +20,22 @@ block content
             .container(style='text-align:center ; margin-top:60px' class="container-fluid")
                 .row
                     .col
-                        h1 Participações:
+                        h1 Sinistrados:
                     .col-6
                         table.table
                             thead.thead-dark
                                 tr
-                                th Nr. Processo:
-                                th Data Acidente:
-                                th Tipo Acidente:
-                                th Estado:
-                                th Opções:
-                            each p in participacoes
+                                th Nif:
+                                th Nome:
+                                th Data Nascimento:
+                                th Telemovel:
+                            each p in sinistrados
                                 tbody
                                     tr
-                                        td=p.nr_processo
-                                        td=p.data_acidente
-                                        td=p.tipo_acidente
-                                        if p.validada
-                                            td Validada
-                                        else
-                                            td Em Processo
-                                        - var link = "/participacoes/validar?id=" + p.nr_processo
-                                        td
-                                          a.btn.btn-dark(href=link) Validar
+                                        td=p.nif
+                                        td=p.nome
+                                        td=p.data_nasc
+                                        td=p.telemovel
                     .col
         .card-footer.text-center
             p SeguradoraApp by is_grupo7

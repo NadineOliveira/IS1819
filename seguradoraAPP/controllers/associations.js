@@ -69,7 +69,7 @@ Sinistrado.belongsToMany(Seguro, {
     Depesa_Tratamento 1-1 Participacao
 */
 
-Participacao.belongsTo(Relatorio_Medico, {
+Participacao.hasMany(Relatorio_Medico, {
   foreignKey: "Participacao_nr_processo"
 });
 Relatorio_Medico.belongsTo(Participacao, {

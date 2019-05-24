@@ -5,9 +5,17 @@ var bcrypt = require("bcrypt");
 module.exports.getAllUtilizadores = async function() {
   var result = [];
   await Utilizador.findAll()
-    .then(values => {
-      for (aux in values) result.push(values[aux].dataValues);
-    })
+    .then(async values => {
+      for (i in values){
+        await seguradoraController.getSeguradoraID(values[i].dataValues.Seguradora_idSeguradora)
+                       .then(values2 => {
+                          values[i].dataValues.nomeSeguradora = values2.nome
+                          result.push(values[i].dataValues)
+                        })
+                        .catch(err2 =>{
+                          result = err2
+                        })}
+                      })
     .catch(err => {
       result = err;
     });

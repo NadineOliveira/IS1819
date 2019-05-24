@@ -28,7 +28,7 @@ module.exports.getSeguradoraByNome = async nome => {
   return result;
 };
 
-module.exports.getSeguradoraID = async is => {
+module.exports.getSeguradoraID = async id => {
   var result;
   await Seguradora.findOne({
     where: {
@@ -36,6 +36,7 @@ module.exports.getSeguradoraID = async is => {
     }
   })
     .then(values => {
+      console.log(values.dataValues);
       result = values.dataValues;
     })
     .catch(err => {

@@ -13,7 +13,7 @@ INSERT INTO `hospital`.`utilizador`
 `telemovel`,
 `Hospital_idHospital`)
 VALUES
-('joao@mail.com','Joao Gomes','jg','jg','hospital','910910910',1);
+('joao@mail.com','Joao Gomes','$2a$10$cHFmcZYB3d5YJo4ttModS.vkA.ENu8ymhOSxps1lBmTdTQ.GTeWby','jg','hospital','910910910',1);
 INSERT INTO `hospital`.`utilizador`
 (`email`,
 `nome`,
@@ -23,7 +23,7 @@ INSERT INTO `hospital`.`utilizador`
 `telemovel`,
 `Hospital_idHospital`)
 VALUES
-('nadine@mail.com','Nadine Oliveira','no','no','hospital','911911911',1);
+('nadine@mail.com','Nadine Oliveira','$2a$10$PAfHt/2zGkzkPYS3XVei6uuoiwb.6ZCNXwBaa2frTdFdhgR34LnNW','no','hospital','911911911',1);
 
 INSERT INTO `hospital`.`medico`
 (`idMedico`,

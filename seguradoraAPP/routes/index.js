@@ -21,7 +21,7 @@ router.post("/", async (req, res, next) => {
         req.user.token = token;
         req.session.token = token;
 
-        return res.redirect("/seguradora");
+        return res.redirect("/participacoes");
       });
     } catch (error) {
       return next(error);
@@ -29,8 +29,5 @@ router.post("/", async (req, res, next) => {
   })(req, res, next);
 });
 
-router.get("/seguradora",(req,res)=>{
-  res.render('home')
-})
 
 module.exports = router;
