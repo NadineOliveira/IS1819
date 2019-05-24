@@ -76,7 +76,7 @@ INSERT INTO `hospital`.`pedido`
 `estado`,
 `hospital_pedido`)
 VALUES
-(1,'155155155','SeguradoraA','aberto',1);
+(1,'155155155','SeguradoraA',1,1);
 
 
 
