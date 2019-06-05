@@ -73,3 +73,37 @@ module.exports.addSeguro = async function(newSeguro) {
         });
     return result;
 };
+
+module.exports.getTipoOfSeguro = async function(idSeguro) {
+    var result = [];
+    await Seguro.findOne({
+            where: { idSeguro: idSeguro },
+            attributes: ['tipo_seguro']
+        })
+        .then(values => {
+            result = values.dataValues;
+        })
+        .catch(err => {
+            result = err;
+        });
+    return result;
+};
+
+module.exports.getSeguradoraOfSeguro = async function(idSeguro) {
+    var result = [];
+    await Seguro.findOne({
+            where: { idSeguro: idSeguro },
+            include: [{
+                model: Seguradora,
+                required: true,
+                attributes: ['nome']
+            }]
+        })
+        .then(values => {
+            result = values.dataValues;
+        })
+        .catch(err => {
+            result = err;
+        });
+    return result;
+};
