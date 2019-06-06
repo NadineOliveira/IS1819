@@ -20,27 +20,20 @@ block content
             .container(style='text-align:center ; margin-top:60px' class="container-fluid")
                 .row
                     .col
-                        h1 Participações:
+                        h1 Participação:
                     .col-6
-                        table.table
-                            thead.thead-dark
-                                tr
-                                th Nr. Processo:
-                                th Data Acidente:
-                                th Tipo Acidente:
-                                th Estado:
-                            each p in participacoes
-                                tbody
-                                    tr
-                                        td=p.nr_processo
-                                        td=p.data_acidente
-                                        td=p.tipo_acidente
-                                        if p.validada
-                                            td Validada
-                                        else
-                                            td Em Processo
+                        form(action='/participacoes/participacao',method='POST')
+                            div.form-group
+                                input.form-control(type="text" name="nr_processo" placeholder="Número de Processo")
+                            div.form-group
+                                input.form-control(type="text" name="tipo_acidente" placeholder="Tipo Acidente")
+                            div.form-group.date
+                                input.form-control(type="date" name="data_acidente")
+                            div.form-group
+                                input.form-control(type="text" name="validada" placeholder="Estado")
+                            div.form-group
+                                input.form-control(type="text" name="nome_seguradora" placeholder="Nome da Seguradora")
+                            button.btn.btn-success(type="submit") Enviar
                     .col
-                        - var link = "/participacoes/participacao"
-                        a.btn.btn-dark(href=link) Participar
         .card-footer.text-center
             p SeguradoraApp by is_grupo7

@@ -14,4 +14,20 @@ router.get('/',(req,res) =>{
         })
     })
 
+router.get('/participacao',(req,res)=>{
+    res.render('participacao')
+})
+
+router.post('/participacao',(req,res) =>{
+    axios.post('http://localhost:8004/pedidos',req.body)
+         .then(() => {console.log('Pedido efectuado')}) 
+         .catch(erro => {console.log(erro)})
+    axios.post('http://localhost:7004/api/participacoes/',req.body)
+         .then(() => {res.redirect('http://localhost:7004/participacoes/')})
+         .catch(erro => {
+            console.log('Erro na inserção da Participação: ' + erro)
+            res.render('error', {error: erro, message: "Erro na inserção da Participação "})
+        })
+})
+
 module.exports = router;
