@@ -1,9 +1,11 @@
 var Pedido = require("./associations").Pedido;
 var hospitalController = require("./Hospital");
 
-module.exports.getAllPedidos = async function() {
+module.exports.getAllPedidos = async function(nome) {
     var result = [];
-    await Pedido.findAll()
+    await Pedido.findAll({
+            where: { nome_hospital: nome }
+        })
         .then(values => {
             for (i in values) result.push(values[i].dataValues);
         })
