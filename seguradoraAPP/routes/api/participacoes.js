@@ -3,14 +3,15 @@ var router = express.Router()
 var passport = require('passport')
 var Participacao = require("../../controllers/Participacao");
 
-router.get('/',(req,res)=>{
-    Participacao.getAllParticipacoes()
+router.get('/:nome',(req,res)=>{
+    Participacao.getAllParticipacoes(req.params.nome)
               .then(dados => res.json(dados))
               .catch(erro => res.status(500).send('Erro na obtenção de participações: ' + erro))    
 })
 
-router.post('/',(req,res) =>{
-    Participacao.addParticipacao(req.body)
+
+router.post('/:nome',(req,res) =>{
+    Participacao.addParticipacao(req.body,req.params.nome)
               .then(dados => res.json(dados))
               .catch(erro => res.status(500).send('Erro na inserção da participacao: ' + erro))
 })

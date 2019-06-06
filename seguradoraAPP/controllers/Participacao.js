@@ -2,9 +2,11 @@ var Participacao = require("./associations").Participacao;
 var Despesa_Tratamento = require("./associations").Despesa_Tratamento;
 var Relatorio_Medico = require("./associations").Relatorio_Medico;
 
-module.exports.getAllParticipacoes = async function() {
+module.exports.getAllParticipacoes = async function(nome) {
     var result = [];
-    await Participacao.findAll()
+    await Participacao.findAll({
+            where: {nome_seguradora:nome}
+        })
         .then(values => {
             for (aux in values) result.push(values[aux].dataValues);
         })
@@ -64,28 +66,21 @@ module.exports.addParticipacao = async function(newParticipacao, nomeSeguradora)
     var result;
 
     await Participacao.create({
-            nr_processo: newParticipacao.nr_processo,
             data_acidente: newParticipacao.data_acidente,
             tipo_acidente: newParticipacao.tipo_acidente,
-            estado: newParticipacao.estado,
-            nid: newParticipacao.nif,
+            estado: false,
+            nif: newParticipacao.nif,
             nome_seguradora: nomeSeguradora,
             nome_hospital: newParticipacao.nome_hospital,
-            Seguro_idSeguro: newParticipacao.Seguro_idSeguro
+            Seguro_idSeguro: newParticipacao.idSeguro
         })
-        .then(() =>
-            Participacao.findOrCreate({
-                where: {
-                    nr_processo: newUtilizador.nr_processo
-                }
-            })
-        )
         .then(([ax, created]) => {
             result = ax;
         })
         .catch(err => {
             result = err;
         });
+        console.log(result)
     return result;
 };
 

@@ -22,17 +22,17 @@ block content
                     .col
                         h1 Participação:
                     .col-6
-                        form(action='/participacoes/participacao',method='POST')
+                        form(action='/participacoes/participacao?nome='+nome,method='POST')
                             div.form-group
-                                input.form-control(type="text" name="nr_processo" placeholder="Número de Processo")
+                                input.form-control(type="text" name="nif" placeholder="NIF")
                             div.form-group
                                 input.form-control(type="text" name="tipo_acidente" placeholder="Tipo Acidente")
                             div.form-group.date
                                 input.form-control(type="date" name="data_acidente")
                             div.form-group
-                                input.form-control(type="text" name="validada" placeholder="Estado")
+                                input.form-control(type="text" name="idSeguro" placeholder="ID de Seguro")
                             div.form-group
-                                input.form-control(type="text" name="nome_seguradora" placeholder="Nome da Seguradora")
+                                input.form-control(type="text" name="nome_hospital" placeholder="Nome de Hospital")
                             button.btn.btn-success(type="submit") Enviar
                     .col
         .card-footer.text-center

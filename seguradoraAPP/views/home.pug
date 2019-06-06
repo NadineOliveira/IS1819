@@ -26,21 +26,31 @@ block content
                             thead.thead-dark
                                 tr
                                 th Nr. Processo:
+                                th NIF:
                                 th Data Acidente:
                                 th Tipo Acidente:
+                                th Nome Seguradora:
+                                th Nome Hospital:
                                 th Estado:
                             each p in participacoes
                                 tbody
                                     tr
                                         td=p.nr_processo
+                                        td=p.nif
                                         td=p.data_acidente
                                         td=p.tipo_acidente
-                                        if p.validada
+                                        td=p.nome_seguradora
+                                        td=p.nome_hospital
+                                        if p.estado == true
                                             td Validada
                                         else
-                                            td Em Processo
+                                            if p.estado == false
+                                                td Em Processo
+                                            else
+                                                td=p.estado
+                                            
                     .col
-                        - var link = "/participacoes/participacao"
+                        - var link = "/participacoes/participacao?nome="+nome
                         a.btn.btn-dark(href=link) Participar
         .card-footer.text-center
             p SeguradoraApp by is_grupo7
