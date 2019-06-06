@@ -13,16 +13,7 @@ INSERT INTO `hospital`.`utilizador`
 `telemovel`,
 `Hospital_idHospital`)
 VALUES
-('joao@mail.com','Joao Gomes','$2a$10$cHFmcZYB3d5YJo4ttModS.vkA.ENu8ymhOSxps1lBmTdTQ.GTeWby','jg','hospital','910910910',1);
-INSERT INTO `hospital`.`utilizador`
-(`email`,
-`nome`,
-`password`,
-`username`,
-`tipo_entidade`,
-`telemovel`,
-`Hospital_idHospital`)
-VALUES
+('joao@mail.com','Joao Gomes','$2a$10$cHFmcZYB3d5YJo4ttModS.vkA.ENu8ymhOSxps1lBmTdTQ.GTeWby','jg','hospital','910910910',1),
 ('nadine@mail.com','Nadine Oliveira','$2a$10$PAfHt/2zGkzkPYS3XVei6uuoiwb.6ZCNXwBaa2frTdFdhgR34LnNW','no','hospital','911911911',1);
 
 INSERT INTO `hospital`.`medico`
@@ -70,13 +61,16 @@ VALUES
 (1,'Raio-x',20.0,1,1);
 
 INSERT INTO `hospital`.`pedido`
-(`idPedido`,
-`nif`,
+(`nif`,
 `nome_seguradora`,
 `estado`,
+`nome_hospital`,
+`nr_processo`,
+`data_acidente`,
+`tipo_acidente`,
+`idSeguro`,
 `hospital_pedido`)
-VALUES
-(1,'155155155','SeguradoraA',1,1);
+VALUES('123123123','SeguradoraA',1,'S.Joao',1,'2019-12-12','Automóvel',1,1);
 
 
 
