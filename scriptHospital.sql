@@ -60,17 +60,6 @@ INSERT INTO `hospital`.`tratamento`
 VALUES
 (1,'Raio-x',20.0,1,1);
 
-INSERT INTO `hospital`.`pedido`
-(`nif`,
-`nome_seguradora`,
-`estado`,
-`nome_hospital`,
-`nr_processo`,
-`data_acidente`,
-`tipo_acidente`,
-`idSeguro`,
-`hospital_pedido`)
-VALUES('123123123','SeguradoraA',1,'S.Joao',1,'2019-12-12','Automóvel',1,1);
 
 
 
