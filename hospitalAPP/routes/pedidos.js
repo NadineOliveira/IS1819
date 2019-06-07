@@ -5,11 +5,11 @@ var axios = require('axios')
 
 
 
+
 router.get('/',(req,res) =>{
-    axios.get('http://localhost:8004/api/pedidos/')
+    axios.get('http://localhost:8004/api/pedidos/'+ req.query.nome)
           .then(dados => {
-            console.log(dados.data)
-            res.render('home',{pedidos: dados.data})
+            res.render('home',{pedidos: dados.data,nome: req.query.nome})
         })
         .catch(erro => {
             console.log('Erro na listagem dos Pedidos: ' + erro)
@@ -20,17 +20,36 @@ router.get('/',(req,res) =>{
 
 
 router.post('/',(req,res)=>{
-    console.log(req.body)
-    axios.post('http://localhost:8004/api/pedidos/',req.body)
-         .then(() =>{ res.redirect('http://localhost:8004/api/pedidos/')})
+    axios.post('http://localhost:8004/api/pedidos/'+req.body.nr_processo,req.body)
+         .then(async(dados) =>{ 
+            await axios.post('http://localhost:7004/participacoes/resposta',dados.data)
+                        .then(() => res.redirect('http://localhost:8004/pedidos?nome='+ req.query.nome))
+                        .catch(erro => {
+                            console.log('Erro na listagem dos Pedidos: ' + erro)
+                            res.render('error', {error: erro, message: "Erro na listagem de Pedidos"})
+                })
+        })
          .catch(erro => {
             console.log('Erro na listagem dos Pedidos: ' + erro)
             res.render('error', {error: erro, message: "Erro na listagem de Pedidos"})
          })
 })
 
-router.post('/resposta',(req,res) => {
-
+router.post('/resposta/estado',async (req,res) => {
+    axios.post('http://localhost:8004/api/pedidos/resposta/estado',req.body)
+         .then(async (dados) =>{
+            await axios.post('http://localhost:7004/participacoes/resposta/estado',dados.data)
+                        .then(() => {
+                            res.redirect('http://localhost:8004/pedidos?nome='+ dados.data.pedido.nome_hospital)})
+                        .catch(erro => {
+                            console.log('Erro na listagem dos Pedidos: ' + erro)
+                            res.render('error', {error: erro, message: "Erro na listagem de Pedidos"})
+                })
+         })
+         .catch(erro => {
+            console.log('Erro na atualização do Pedido: ' + erro)
+            res.render('error', {error: erro, message: "Erro na atualização do Pedido"})
+         })
 })
 
 module.exports = router;

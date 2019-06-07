@@ -52,7 +52,7 @@ module.exports.getAllRelatoriosOfParticipacao = async function(nr_proc) {
     return result;
 };
 
-module.exports.validaParticipacao = async function(nr_proc) {
+module.exports.validaParticipacao = async nr_proc =>{
     var result;
     await Participacao.update({ estado: 1 }, { where: { nr_processo: nr_proc } })
         .then(() => {
@@ -66,6 +66,7 @@ module.exports.addParticipacao = async function(newParticipacao, nomeSeguradora)
     var result;
 
     await Participacao.create({
+            nr_processo: newParticipacao.nr_processo,
             data_acidente: newParticipacao.data_acidente,
             tipo_acidente: newParticipacao.tipo_acidente,
             estado: false,
@@ -74,13 +75,19 @@ module.exports.addParticipacao = async function(newParticipacao, nomeSeguradora)
             nome_hospital: newParticipacao.nome_hospital,
             Seguro_idSeguro: newParticipacao.idSeguro
         })
+        .then(() =>
+            Participacao.findOrCreate({
+                where: {
+                nr_processo: newParticipacao.nr_processo
+                }
+            })
+        )
         .then(([ax, created]) => {
             result = ax;
         })
         .catch(err => {
             result = err;
         });
-        console.log(result)
     return result;
 };
 

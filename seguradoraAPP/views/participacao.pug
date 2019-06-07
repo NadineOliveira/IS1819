@@ -24,6 +24,8 @@ block content
                     .col-6
                         form(action='/participacoes/participacao?nome='+nome,method='POST')
                             div.form-group
+                                input.form-control(type="text" name="nr_processo" placeholder="Número de Processo")
+                            div.form-group
                                 input.form-control(type="text" name="nif" placeholder="NIF")
                             div.form-group
                                 input.form-control(type="text" name="tipo_acidente" placeholder="Tipo Acidente")

@@ -29,7 +29,6 @@ block content
                                 th NIF:
                                 th Data Acidente:
                                 th Tipo Acidente:
-                                th Nome Seguradora:
                                 th Nome Hospital:
                                 th Estado:
                             each p in participacoes
@@ -39,16 +38,16 @@ block content
                                         td=p.nif
                                         td=p.data_acidente
                                         td=p.tipo_acidente
-                                        td=p.nome_seguradora
                                         td=p.nome_hospital
                                         if p.estado == true
-                                            td Validada
+                                            td Concluida
                                         else
                                             if p.estado == false
                                                 td Em Processo
                                             else
                                                 td=p.estado
                                             
+                    .col
                     .col
                         - var link = "/participacoes/participacao?nome="+nome
                         a.btn.btn-dark(href=link) Participar

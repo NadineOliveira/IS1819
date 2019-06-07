@@ -28,5 +28,11 @@ router.get('/relatorios/:nproc',(req,res)=>{
               .catch(erro => res.status(500).send('Erro na obtenção de relatorios: ' + erro))    
 })
 
+router.post('/resposta/estado',(req,res) =>{
+    Participacao.validaParticipacao(req.body.pedido.nr_processo)
+              .then(dados => res.json(dados))
+              .catch(erro => res.status(500).send('Erro na atualização da participacao: ' + erro))
+})
+
 
 module.exports = router;

@@ -14,7 +14,6 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  console.log(req.params.id)
   Hospital.getHospitalByID(req.params.id)
     .then(dados => res.json(dados))
     .catch(erro =>

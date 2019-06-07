@@ -1,6 +1,6 @@
 var Pedido = require("./associations").Pedido;
 var hospitalController = require("./Hospital");
-
+ 
 module.exports.getAllPedidos = async function(nome) {
     var result = [];
     await Pedido.findAll({
@@ -14,7 +14,38 @@ module.exports.getAllPedidos = async function(nome) {
         });
     return result;
 };
-
+ 
+module.exports.getPedidoByID = async id => {
+    var result;
+    await Pedido.findOne({
+            where: {
+                idPedido: id
+            }
+        })
+        .then(values => {
+            result = values.dataValues;
+        })
+        .catch(err => {
+            result = err;
+        });
+    return result;
+};
+ 
+module.exports.getPedidoByNProcesso = async id => {
+    var result;
+    await Pedido.findOne({
+            where: {
+                nr_processo: id
+            }
+        })
+        .then(values => {
+            result = values;
+        })
+        .catch(err => {
+            result = err;
+        });
+    return result;
+};
 module.exports.getPedidosOfSeguradora = async function(nomeSeguradora) {
     var result = [];
     await Pedido.findAll({
@@ -30,7 +61,7 @@ module.exports.getPedidosOfSeguradora = async function(nomeSeguradora) {
         });
     return result;
 };
-
+ 
 module.exports.addPedido = async function(newPedido) {
     var result;
     var idHospital = await hospitalController.getHospitalByNome(
@@ -53,5 +84,35 @@ module.exports.addPedido = async function(newPedido) {
         .catch(err => {
             result = err;
         });
+    return result;
+};
+ 
+module.exports.countPedidosEmProcesso = async function() {
+    var result = 0;
+    await Pedido.count({
+            where: {
+                estado: 0
+            }
+        })
+        .then(values => {
+            result = values
+        })
+        .catch(err => {
+            result = err;
+        });
+    return result;
+};
+
+module.exports.updatePedidoByID = async id => {
+    var result
+    await Pedido.update({ estado: 1 }, {
+        where: {
+            idPedido: id
+        }
+    })
+    .then(() => {
+        result = Pedido.findOne({ where: { idPedido: id } });
+    })
+    .catch(err => (result = err));
     return result;
 };

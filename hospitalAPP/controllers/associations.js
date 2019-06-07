@@ -6,7 +6,7 @@ const Medico = db.import("../models/medico");
 const Hospital = db.import("../models/hospital");
 const Factura = db.import("../models/factura");
 const Diagnostico = db.import("../models/diagnóstico");
-const Pedido = db.import("../models/pedido");
+const Pedido = db.import("../models/Pedido");
 
 /*
     Utilizador 1-1 Hospital
