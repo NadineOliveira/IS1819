@@ -14,7 +14,6 @@ var associations = require("./controllers/associations");
 var indexRouter = require("./routes/index");
 var apiUtilizadoresRouter = require('./routes/api/utilizadores')
 var utilizadoresRouter = require("./routes/utilizadores");
-var usersRouter = require("./routes/users");
 var apiParticipacoesRouter = require('./routes/api/participacoes')
 var apiSeguradorasRouter = require('./routes/api/seguradoras')
 var apiSegurosRouter = require('./routes/api/seguros');

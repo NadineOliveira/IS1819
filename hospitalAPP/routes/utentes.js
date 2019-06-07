@@ -5,10 +5,10 @@ var axios = require('axios')
 
 
 
-router.get('/', (req, res) => {
-    axios.get('http://localhost:8004/api/utentes/')
+router.get('/',passport.authenticate('jwt',{session:false}),(req, res) => {
+    axios.get('http://localhost:8004/api/utentes/',{ headers: {"Authorization" : req.session.token}})
         .then(dados => {
-            res.render('utentes', { utentes: dados.data })
+            res.render('utentes', { utentes: dados.data,nome:req.query.nome})
         })
         .catch(erro => {
             console.log('Erro na listagem dos Utentes: ' + erro)
@@ -16,10 +16,10 @@ router.get('/', (req, res) => {
         })
 })
 
-router.get('/diagnosticos', (req, res) => {
-    axios.get('http://localhost:8004/api/utentes/diagnosticos/' + req.query.id)
+router.get('/diagnosticos',passport.authenticate('jwt',{session:false}),(req, res) => {
+    axios.get('http://localhost:8004/api/utentes/diagnosticos/' + req.query.id,{ headers: {"Authorization" : req.session.token}})
         .then(dados => {
-            res.render('diagnosticos', { dados: dados.data[0].diagnósticos })
+            res.render('diagnosticos', { dados: dados.data[0].diagnósticos,nome:req.query.nome})
         })
         .catch(erro => {
             console.log('Erro na listagem dos Utentes: ' + erro)

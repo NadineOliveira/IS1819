@@ -3,19 +3,9 @@ var router = express.Router();
 var passport = require("passport");
 var Pedido = require("../../controllers/Pedido");
 
-var resposta = {
-  headers: {},
-  pedido: {},
-  erros: [],
-  erro: false,
-  totalRecebidos: 0,
-  totalRegistados: 0,
-  totalRejeitados: 0,
-  totalValidados: 0,
 
-}
 
-router.get("/:nome", (req, res) => {
+router.get("/:nome",(req, res) => {
   Pedido.getAllPedidos(req.params.nome)
     .then(dados => res.json(dados))
     .catch(erro =>
@@ -23,7 +13,18 @@ router.get("/:nome", (req, res) => {
     );
 });
 
-router.post("/:nr_processo", async (req, res) => {
+router.post("/:nr_processo",async (req, res) => {
+  var resposta = {
+    headers: {},
+    pedido: {},
+    erros: [],
+    erro: false,
+    totalRecebidos: 0,
+    totalRegistados: 0,
+    totalRejeitados: 0,
+    totalValidados: 0,
+  
+  }
   await Pedido.countPedidosEmProcesso()
     .then(async dados => {
       if (dados > 10) {
@@ -93,7 +94,18 @@ router.post("/:nr_processo", async (req, res) => {
 })
 
 
-router.post('/resposta/estado', async (req, res) => {
+router.post('/resposta/estado',async (req, res) => {
+  var resposta = {
+    headers: {},
+    pedido: {},
+    erros: [],
+    erro: false,
+    totalRecebidos: 0,
+    totalRegistados: 0,
+    totalRejeitados: 0,
+    totalValidados: 0,
+  
+  }
   await Pedido.getPedidoByID(req.body.idPedido)
     .then(async dados => {
       var update = await Pedido.updatePedidoByID(req.body.idPedido)
@@ -128,8 +140,6 @@ router.post('/resposta/estado', async (req, res) => {
         resposta.pedido = p
         resposta.erros.push('Não conseguimos efetuar Pedido!')
         resposta.erro = true
-        console.log('Resposta Erro')
-        console.log(resposta)
         res.json(resposta)
       }
     })

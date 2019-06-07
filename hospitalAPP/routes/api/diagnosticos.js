@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require("passport");
 var Diagnostico = require("../../controllers/Diagnostico");
 
-router.get("/:nif", (req, res) => {
+router.get("/:nif",passport.authenticate('jwt',{session:false}),(req, res) => {
   Diagnostico.getAllDiagnosticosByUtente(req.params.nif)
     .then(dados => res.json(dados))
     .catch(erro =>
@@ -11,7 +11,7 @@ router.get("/:nif", (req, res) => {
     );
 });
 
-router.get("/data/:nif", (req, res) => {
+router.get("/data/:nif",passport.authenticate('jwt',{session:false}),(req, res) => {
   Diagnostico.getDiagnosticoByData(req.params.nif, req.query.data)
     .then(dados => {
       res.json(dados);
@@ -22,7 +22,7 @@ router.get("/data/:nif", (req, res) => {
 });
 
 
-router.get("/tratamentos/:id", (req, res) => {
+router.get("/tratamentos/:id", passport.authenticate('jwt',{session:false}),(req, res) => {
   Diagnostico.getTratamentosByDiagnostico(req.params.id)
     .then(dados => {
       res.json(dados);

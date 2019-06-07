@@ -5,17 +5,17 @@ block content
         .card-header
             h1 Seguradora
         nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
-            a.navbar-brand(href='/participacoes') Home 
+            a.navbar-brand(href='/participacoes?nome='+nome) Home 
             button.navbar-toggler(type='button' data-toggle='collapse' data-target='#collapsibleNavbar')
                 span.navbar-toggler-icon
             #collapsibleNavbar.collapse.navbar-collapse
                 ul.navbar-nav
                     li.nav-item
-                        a.nav-link(href='/sinistrados') Sinistrados
+                        a.nav-link(href='/sinistrados?nome='+nome) Sinistrados
                     li.nav-item
-                        a.nav-link(href='/seguros') Seguros
+                        a.nav-link(href='/seguros?nome='+nome) Seguros
                     li.nav-item
-                        a.nav-link(href='/utilizadores') Utilizadores 
+                        a.nav-link(href='/utilizadores?nome='+nome) Utilizadores 
         .card-body
             .container(style='text-align:center ; margin-top:60px' class="container-fluid")
                 .row

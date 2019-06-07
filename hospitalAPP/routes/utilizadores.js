@@ -5,10 +5,10 @@ var axios = require('axios')
 
 
 
-router.get('/',(req,res) =>{
-    axios.get('http://localhost:8004/api/utilizadores/')
+router.get('/',passport.authenticate('jwt',{session:false}),(req,res) =>{
+    axios.get('http://localhost:8004/api/utilizadores/',{ headers: {"Authorization" : req.session.token}})
           .then(dados => {
-            res.render('utilizadores',{utilizadores: dados.data})
+            res.render('utilizadores',{utilizadores: dados.data,nome:req.query.nome})
         })
         .catch(erro => {
             console.log('Erro na listagem dos Utilizadores: ' + erro)

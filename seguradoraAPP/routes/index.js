@@ -21,7 +21,7 @@ router.post("/", async (req, res, next) => {
         const token = jwt.sign({ user: myutilizador }, "is_grupo7_2019");
         req.user.token = token;
         req.session.token = token;
-        await axios.get('http://localhost:7004/api/seguradoras/' + utilizador.Seguradora_idSeguradora)
+        await axios.get('http://localhost:7004/api/seguradoras/' + utilizador.Seguradora_idSeguradora,{ headers: {"Authorization" : req.session.token}})
                    .then(dados => res.redirect("/participacoes?nome=" + dados.data.nome))
                    .catch(erro => console.log('Erro ->' + erro))
         

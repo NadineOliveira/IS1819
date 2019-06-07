@@ -16,13 +16,13 @@ router.post('/:nome',(req,res) =>{
               .catch(erro => res.status(500).send('Erro na inserção da participacao: ' + erro))
 })
 
-router.get('/despesas/:nproc',(req,res) =>{
+router.get('/despesas/:nproc',passport.authenticate('jwt',{session:false}),(req,res) =>{
     Participacao.getAllDespesasOfParticipacao(req.params.nproc)
                 .then(dados => res.json(dados))
                 .catch(erro => res.status(500).send('Erro na obtenção de despesas: ' + erro))
 })
 
-router.get('/relatorios/:nproc',(req,res)=>{
+router.get('/relatorios/:nproc',passport.authenticate('jwt',{session:false}),(req,res)=>{
     Participacao.getAllRelatoriosOfParticipacao(req.params.nproc)
               .then(dados => res.json(dados))
               .catch(erro => res.status(500).send('Erro na obtenção de relatorios: ' + erro))    

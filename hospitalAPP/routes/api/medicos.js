@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require("passport");
 var Medico = require("../../controllers/Medico");
 
-router.get("/", (req, res) => {
+router.get("/",passport.authenticate('jwt',{session:false}),(req, res) => {
   Medico.getAllMedicos()
     .then(dados => {
       res.json(dados);
@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
     );
 });
 
-router.post("/", (req, res) => {
+router.post("/",passport.authenticate('jwt',{session:false}),(req, res) => {
   Medico.addMedico(req.body)
     .then(dados => {
       res.json(dados);

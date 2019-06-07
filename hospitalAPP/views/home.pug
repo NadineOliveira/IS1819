@@ -5,17 +5,17 @@ block content
         .card-header
             h1 Hospital
         nav.navbar.navbar-expand-sm.bg-dark.navbar-dark
-            a.navbar-brand(href='/pedidos') Home 
+            a.navbar-brand(href='/pedidos?nome='+nome) Home 
             button.navbar-toggler(type='button' data-toggle='collapse' data-target='#collapsibleNavbar')
                 span.navbar-toggler-icon
             #collapsibleNavbar.collapse.navbar-collapse
                 ul.navbar-nav
                     li.nav-item
-                        a.nav-link(href='/utentes') Utentes
+                        a.nav-link(href='/utentes?nome='+nome) Utentes
                     li.nav-item
-                        a.nav-link(href='/medicos') Médicos
+                        a.nav-link(href='/medicos?nome='+nome) Médicos
                     li.nav-item
-                        a.nav-link(href='/utilizadores') Utilizadores 
+                        a.nav-link(href='/utilizadores?nome='+nome) Utilizadores 
         .card-body
             .container(style='text-align:center ; margin-top:60px' class="container-fluid")
                 .row

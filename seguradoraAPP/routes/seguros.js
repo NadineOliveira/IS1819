@@ -3,11 +3,10 @@ var router = express.Router()
 var passport = require("passport");
 var axios = require('axios')
 
-router.get('/',(req,res) =>{
-    axios.get('http://localhost:7004/api/seguros/')
+router.get('/',passport.authenticate('jwt',{session:false}),(req,res) =>{
+    axios.get('http://localhost:7004/api/seguros/',{ headers: {"Authorization" : req.session.token}})
           .then(dados => {
-            console.log(dados.data)
-            res.render('seguros',{seguros: dados.data})
+            res.render('seguros',{seguros: dados.data,nome:req.query.nome})
         })
         .catch(erro => {
             console.log('Erro na listagem das Participacoes: ' + erro)

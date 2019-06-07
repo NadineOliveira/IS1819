@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require("passport");
 var Utente = require("../../controllers/Utente");
 
-router.get("/", (req, res) => {
+router.get("/",passport.authenticate('jwt',{session:false}),(req, res) => {
   Utente.getAllUtentes()
     .then(dados => {
       res.json(dados);
@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
     );
 });
 
-router.post("/", (req, res) => {
+router.post("/",passport.authenticate('jwt',{session:false}),(req, res) => {
   Utente.addUtente(req.body)
     .then(dados => {
       res.json(dados);
@@ -21,13 +21,13 @@ router.post("/", (req, res) => {
     .catch(erro => res.status(500).send("Erro na inserção do utente: " + erro));
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id",passport.authenticate('jwt',{session:false}),(req, res) => {
   Utente.getUtenteById(req.params.id)
     .then(dados => res.json(dados))
     .catch(erro => res.status(500).send("Erro na obtenção do utente: " + erro));
 });
 
-router.get("/diagnosticos/:id", (req, res) => {
+router.get("/diagnosticos/:id",passport.authenticate('jwt',{session:false}),(req, res) => {
   Utente.getTratamentosByUtente(req.params.id)
     .then(dados => res.json(dados))
     .catch(erro =>
