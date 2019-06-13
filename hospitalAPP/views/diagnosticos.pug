@@ -33,7 +33,7 @@ block content
                                 td=d.idDiagnóstico
                                 td=d.descricao
                                 td=d.area_clinica
-                                    - var link = "/diagnosticos/tratamentos?id=" + d.idDiagnóstico
+                                    - var link = "/diagnosticos/tratamentos?id=" + d.idDiagnóstico + '&nome=' + nome
                                 td
                                     a.btn.btn-dark(href=link) Ver Tratamentos
                     .col
